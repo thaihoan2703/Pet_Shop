@@ -1,0 +1,64 @@
+﻿<Window x:Class="Pet_Shop.InputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pet_Shop"
+        mc:Ignorable="d"
+        DataContext="{StaticResource InputProductVM}"
+        x:Name="inputWindow"
+        Title="InputWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--các element binding từ selected item-->
+            <Grid Grid.Row="0" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <ComboBox Width="200"  DisplayMemberPath="DisplayName"  ItemsSource="{Binding ProductList}" SelectedItem="{Binding SelectedProductItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" />
+                    <TextBox Width="70" Text="{Binding QuantityItem, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5"  />
+                    <TextBox Width="120" Text="{Binding InputPriceItem, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5"  />
+                    <TextBox Width="120" Text="{Binding OutputPriceItem, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5"  />
+
+                </WrapPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="5">
+                <WrapPanel>
+                    <Button Command="{Binding AddItemCommand}" Content="Thêm" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding EditItemCommand}" Content="Sửa" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding DeleteItemCommand}" Content="Xóa" Margin="5" Width="100"></Button>
+                </WrapPanel>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding inputInfoListItem}" SelectedItem="{Binding SelectedInfoItemSM}" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="200" Header="Sản phẩm" DisplayMemberBinding="{Binding Product.DisplayName}"></GridViewColumn>
+                                <GridViewColumn Width="70" Header="Số lượng" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
+                                <GridViewColumn Width="150" Header="Giá nhập" DisplayMemberBinding="{Binding InputPrice}"></GridViewColumn>
+                                <GridViewColumn Width="150" Header="Giá xuất" DisplayMemberBinding="{Binding OutputPrice}"></GridViewColumn>
+
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Height="20" Content="Nhập" Width="100" Command="{Binding SubmitInputItemCommand}" CommandParameter="{Binding ElementName=inputWindow}" ></Button>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanlyPetStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QuanlyPetStoreEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="QuanlyPetStoreModel.Customer" />
+    <EntitySet Name="Inputs" EntityType="QuanlyPetStoreModel.Input" />
+    <EntitySet Name="InputInfoes" EntityType="QuanlyPetStoreModel.InputInfo" />
+    <EntitySet Name="Invoices" EntityType="QuanlyPetStoreModel.Invoice" />
+    <EntitySet Name="InvoiceInfoes" EntityType="QuanlyPetStoreModel.InvoiceInfo" />
+    <EntitySet Name="Pets" EntityType="QuanlyPetStoreModel.Pet" />
+    <EntitySet Name="Products" EntityType="QuanlyPetStoreModel.Product" />
+    <EntitySet Name="Services" EntityType="QuanlyPetStoreModel.Service" />
+    <EntitySet Name="Supliers" EntityType="QuanlyPetStoreModel.Suplier" />
+    <EntitySet Name="UserRoles" EntityType="QuanlyPetStoreModel.UserRole" />
+    <EntitySet Name="Users" EntityType="QuanlyPetStoreModel.User" />
+    <AssociationSet Name="FK__Customer__IdPet__276EDEB3" Association="QuanlyPetStoreModel.FK__Customer__IdPet__276EDEB3">
+      <End Role="Pet" EntitySet="Pets" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceIn__IdCus__4222D4EF" Association="QuanlyPetStoreModel.FK__InvoiceIn__IdCus__4222D4EF">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="InvoiceInfo" EntitySet="InvoiceInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InputInfo__IdInp__398D8EEE" Association="QuanlyPetStoreModel.FK__InputInfo__IdInp__398D8EEE">
+      <End Role="Input" EntitySet="Inputs" />
+      <End Role="InputInfo" EntitySet="InputInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InputInfo__Statu__38996AB5" Association="QuanlyPetStoreModel.FK__InputInfo__Statu__38996AB5">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="InputInfo" EntitySet="InputInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceIn__IdInv__412EB0B6" Association="QuanlyPetStoreModel.FK__InvoiceIn__IdInv__412EB0B6">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceInfo" EntitySet="InvoiceInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceIn__IdSer__4316F928" Association="QuanlyPetStoreModel.FK__InvoiceIn__IdSer__4316F928">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="InvoiceInfo" EntitySet="InvoiceInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceIn__Statu__403A8C7D" Association="QuanlyPetStoreModel.FK__InvoiceIn__Statu__403A8C7D">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="InvoiceInfo" EntitySet="InvoiceInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__image__2B3F6F97" Association="QuanlyPetStoreModel.FK__Product__image__2B3F6F97">
+      <End Role="Suplier" EntitySet="Supliers" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__IdRole__31EC6D26" Association="QuanlyPetStoreModel.FK__Users__IdRole__31EC6D26">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdPet" Type="Int32" />
+    <NavigationProperty Name="Pet" Relationship="QuanlyPetStoreModel.FK__Customer__IdPet__276EDEB3" FromRole="Customer" ToRole="Pet" />
+    <NavigationProperty Name="InvoiceInfoes" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__IdCus__4222D4EF" FromRole="Customer" ToRole="InvoiceInfo" />
+  </EntityType>
+  <EntityType Name="Input">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateInput" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="InputInfoes" Relationship="QuanlyPetStoreModel.FK__InputInfo__IdInp__398D8EEE" FromRole="Input" ToRole="InputInfo" />
+  </EntityType>
+  <EntityType Name="InputInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProduct" Type="Int32" Nullable="false" />
+    <Property Name="IdInput" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="InputPrice" Type="Double" />
+    <Property Name="OutputPrice" Type="Double" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Input" Relationship="QuanlyPetStoreModel.FK__InputInfo__IdInp__398D8EEE" FromRole="InputInfo" ToRole="Input" />
+    <NavigationProperty Name="Product" Relationship="QuanlyPetStoreModel.FK__InputInfo__Statu__38996AB5" FromRole="InputInfo" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateOutput" Type="DateTime" Precision="3" />
+    <Property Name="TotalPrice" Type="Double" />
+    <NavigationProperty Name="InvoiceInfoes" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__IdInv__412EB0B6" FromRole="Invoice" ToRole="InvoiceInfo" />
+  </EntityType>
+  <EntityType Name="InvoiceInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProduct" Type="Int32" />
+    <Property Name="IdService" Type="Int32" />
+    <Property Name="IdInvoice" Type="Int32" Nullable="false" />
+    <Property Name="IdCustomer" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="TotalPrice" Type="Double" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__IdCus__4222D4EF" FromRole="InvoiceInfo" ToRole="Customer" />
+    <NavigationProperty Name="Invoice" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__IdInv__412EB0B6" FromRole="InvoiceInfo" ToRole="Invoice" />
+    <NavigationProperty Name="Service" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__IdSer__4316F928" FromRole="InvoiceInfo" ToRole="Service" />
+    <NavigationProperty Name="Product" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__Statu__403A8C7D" FromRole="InvoiceInfo" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Dob" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Breed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Species" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customers" Relationship="QuanlyPetStoreModel.FK__Customer__IdPet__276EDEB3" FromRole="Pet" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="IdSuplier" Type="Int32" Nullable="false" />
+    <Property Name="BarCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Inventory" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="InputInfoes" Relationship="QuanlyPetStoreModel.FK__InputInfo__Statu__38996AB5" FromRole="Product" ToRole="InputInfo" />
+    <NavigationProperty Name="InvoiceInfoes" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__Statu__403A8C7D" FromRole="Product" ToRole="InvoiceInfo" />
+    <NavigationProperty Name="Suplier" Relationship="QuanlyPetStoreModel.FK__Product__image__2B3F6F97" FromRole="Product" ToRole="Suplier" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <NavigationProperty Name="InvoiceInfoes" Relationship="QuanlyPetStoreModel.FK__InvoiceIn__IdSer__4316F928" FromRole="Service" ToRole="InvoiceInfo" />
+  </EntityType>
+  <EntityType Name="Suplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="QuanlyPetStoreModel.FK__Product__image__2B3F6F97" FromRole="Suplier" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="QuanlyPetStoreModel.FK__Users__IdRole__31EC6D26" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserRole" Relationship="QuanlyPetStoreModel.FK__Users__IdRole__31EC6D26" FromRole="User" ToRole="UserRole" />
+  </EntityType>
+  <Association Name="FK__Customer__IdPet__276EDEB3">
+    <End Type="QuanlyPetStoreModel.Pet" Role="Pet" Multiplicity="0..1" />
+    <End Type="QuanlyPetStoreModel.Customer" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="IdPet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceIn__IdCus__4222D4EF">
+    <End Type="QuanlyPetStoreModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="QuanlyPetStoreModel.InvoiceInfo" Role="InvoiceInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceInfo">
+        <PropertyRef Name="IdCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InputInfo__IdInp__398D8EEE">
+    <End Type="QuanlyPetStoreModel.Input" Role="Input" Multiplicity="1" />
+    <End Type="QuanlyPetStoreModel.InputInfo" Role="InputInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Input">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InputInfo">
+        <PropertyRef Name="IdInput" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InputInfo__Statu__38996AB5">
+    <End Type="QuanlyPetStoreModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="QuanlyPetStoreModel.InputInfo" Role="InputInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InputInfo">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceIn__IdInv__412EB0B6">
+    <End Type="QuanlyPetStoreModel.Invoice" Role="Invoice" Multiplicity="1" />
+    <End Type="QuanlyPetStoreModel.InvoiceInfo" Role="InvoiceInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceInfo">
+        <PropertyRef Name="IdInvoice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceIn__IdSer__4316F928">
+    <End Type="QuanlyPetStoreModel.Service" Role="Service" Multiplicity="0..1" />
+    <End Type="QuanlyPetStoreModel.InvoiceInfo" Role="InvoiceInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceInfo">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceIn__Statu__403A8C7D">
+    <End Type="QuanlyPetStoreModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="QuanlyPetStoreModel.InvoiceInfo" Role="InvoiceInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceInfo">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__image__2B3F6F97">
+    <End Type="QuanlyPetStoreModel.Suplier" Role="Suplier" Multiplicity="1" />
+    <End Type="QuanlyPetStoreModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Suplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdSuplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__IdRole__31EC6D26">
+    <End Type="QuanlyPetStoreModel.UserRole" Role="UserRole" Multiplicity="1" />
+    <End Type="QuanlyPetStoreModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

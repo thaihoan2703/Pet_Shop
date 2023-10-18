@@ -1,0 +1,36 @@
+﻿<Window x:Class="Pet_Shop.AddCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pet_Shop"
+        mc:Ignorable="d"
+        xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
+        
+        x:Name="addCustomerWindow"
+        DataContext="{StaticResource AddCustomerVM}"
+        Title="AddCustomerWindow" Height="auto" Width="800" Loaded="addCustomerWindow_Loaded">
+    <Grid>
+        <Grid >
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Display Name" />
+                <TextBox x:Name="txtDisplayName" Text="{Binding DisplayName}" />
+
+                <TextBlock Text="Address" />
+                <TextBox x:Name="txtAddress" Text="{Binding Address}" />
+
+                <TextBlock Text="Phone" />
+                <TextBox x:Name="txtPhone" Text="{Binding Phone}" />
+
+                <TextBlock Text="Email" />
+                <TextBox x:Name="txtEmail" Text="{Binding Email}" />
+
+                <TextBlock Text="More Info" />
+                <TextBox x:Name="txtMoreInfo" Text="{Binding MoreInfo}" />
+
+                <Button Content="Add" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=addCustomerWindow}" />
+                <Button Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=addCustomerWindow}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="79b93cd9881344ba96d9c74955a87f85" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.Customer" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.Input" Width="1.5" PointX="3" PointY="15.375" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.InputInfo" Width="1.5" PointX="5.25" PointY="10.875" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.Invoice" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.InvoiceInfo" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.Pet" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.Product" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.Service" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.Suplier" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.UserRole" Width="1.5" PointX="5.75" PointY="6.25" />
+        <EntityTypeShape EntityType="QuanlyPetStoreModel.User" Width="1.5" PointX="8" PointY="5.875" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__Customer__IdPet__276EDEB3" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__InvoiceIn__IdCus__4222D4EF" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__InputInfo__IdInp__398D8EEE" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__InputInfo__Statu__38996AB5" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__InvoiceIn__IdInv__412EB0B6" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__InvoiceIn__IdSer__4316F928" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__InvoiceIn__Statu__403A8C7D" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__Product__image__2B3F6F97" />
+        <AssociationConnector Association="QuanlyPetStoreModel.FK__Users__IdRole__31EC6D26" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Pet_Shop.UserControls.CustomerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pet_Shop.UserControls"
+             mc:Ignorable="d" 
+             DataContext="{StaticResource MainVM}"
+             x:Name="customerUC"
+             d:DesignHeight="450" Width="auto"
+             
+             >
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0" HorizontalAlignment="Left">
+                <TextBox x:Name="textBoxSearch" Text="{Binding SearchText}"
+                    Width="200"
+                    HorizontalAlignment="Left"/>
+                <Button x:Name="buttonSearch" Content="Tìm kiếm" Command="{Binding SearchCommand}"
+            HorizontalAlignment="Right"
+            Margin="10,0,0,0"
+            />
+            </DockPanel>
+            <DockPanel  Grid.Column="1" HorizontalAlignment="Right">
+                <Button x:Name="buttonAdd" Content="Add" Command="{Binding AddCommand}"
+                Margin="10,0,20,0" Width="26"
+            />
+            </DockPanel>
+        </Grid>
+
+        <Grid  Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="dataGridCustomers" ItemsSource="{Binding List}" 
+                          SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="50" Header=" Mã KH" IsReadOnly="True" Binding="{Binding Id}" />
+                        <DataGridTemplateColumn Header="Tên khách hàng" IsReadOnly="True" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Width="150" Height="25" CornerRadius="50" Margin="0 0 10 0">
+                                            <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        </Border>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Width="200" Header="Địa chỉ" Binding="{Binding Address}" />
+                        <DataGridTextColumn Width="100" Header="Số điện thoại" Binding="{Binding Phone}" />
+                        <DataGridTemplateColumn Width="120" IsReadOnly="True" >
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Chức năng"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" DataContext="{StaticResource MainVM}">
+                                        <Button Content="Edit" x:Name="editBtn" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=editBtn}" >
+                                        </Button>
+                                        <Button Content="Delete" x:Name="deleteBtn"  Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=deleteBtn}" >
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</UserControl>
